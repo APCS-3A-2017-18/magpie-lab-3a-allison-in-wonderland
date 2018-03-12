@@ -170,3 +170,5 @@ public class Magpie3
 	}
 
 }
+public void doNothing (int dud) {
+}
