@@ -45,6 +45,10 @@ public class Magpie3
 		{
 			response = "Tell me more about your family.";
 		}
+		else if (findKeyword(statement, "I like", 0) >= 0)
+		{
+			response = ILike(statement);
+		}
 		else
 		{
 			response = getRandomResponse();
@@ -117,22 +121,16 @@ public class Magpie3
 
 		return -1;
 	}
-		private String ILike(String statement)
-	{
-		//  Remove the final period, if there is one
+		private String ILike(String statement) {
 		statement = statement.trim();
-		String lastChar = statement.substring(statement
-				.length() - 1);
-		if (lastChar.equals("."))
+		String lastChar = statement.substring(statement.length() - 1);
+		if (lastChar.equals(".") || lastChar.equals("!"))
 		{
-			statement = statement.substring(0, statement
-					.length() - 1);
+			statement = statement.substring(0, statement.length() - 1);
 		}
-		
-		int psnOfLike = findKeyword (statement, "like", 0);
-		
-		String restOfStatement = statement.substring(psnOfLike + 1, statement.length()).trim();
-		return "What do you like about" + restOfStatement;
+		int psn = findKeyword (statement, "I like", 0);
+		String restOfStatement = statement.substring(psn + 6).trim();
+		return "What do you like about " + restOfStatement + "?";
 	}
 	/**
 	 * Search for one word in phrase. The search is not case
