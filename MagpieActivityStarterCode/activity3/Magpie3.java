@@ -51,7 +51,7 @@ public class Magpie3
 		}
 		return response;
 	}
-
+	
 	/**
 	 * Search for one word in phrase. The search is not case
 	 * sensitive. This method will check that the given goal
@@ -117,7 +117,23 @@ public class Magpie3
 
 		return -1;
 	}
-
+		private String ILike(String statement)
+	{
+		//  Remove the final period, if there is one
+		statement = statement.trim();
+		String lastChar = statement.substring(statement
+				.length() - 1);
+		if (lastChar.equals("."))
+		{
+			statement = statement.substring(0, statement
+					.length() - 1);
+		}
+		
+		int psnOfLike = findKeyword (statement, "like", 0);
+		
+		String restOfStatement = statement.substring(psnOfLike + 1, statement.length()).trim();
+		return "What do you like about" + restOfStatement;
+	}
 	/**
 	 * Search for one word in phrase. The search is not case
 	 * sensitive. This method will check that the given goal
