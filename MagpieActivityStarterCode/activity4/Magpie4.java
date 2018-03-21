@@ -53,9 +53,14 @@ public class Magpie4
 		{
 			response = transformIWantToStatement(statement);
 		}
-
-		else
+		else if (findKeyword(statement, "I want", 0) >= 0)
 		{
+			response = transformIWantStatement(statement);
+		}
+
+		else if (findKeyword(statement, "you", 0) >= 0)
+		{
+
 			// Look for a two word (you <something> me)
 			// pattern
 			int psn = findKeyword(statement, "you", 0);
@@ -65,11 +70,22 @@ public class Magpie4
 			{
 				response = transformYouMeStatement(statement);
 			}
-			else
+		else
 			{
-				response = getRandomResponse();
+				psn = findKeyword(statement, "i", 0);
+
+				if (psn >= 0
+						&& findKeyword(statement, "you", psn) >= 0)
+				{
+					response = transformIYouStatement(statement);
+				}
+				else
+				{
+					response = getRandomResponse();
+				}
 			}
 		}
+
 		return response;
 	}
 	
