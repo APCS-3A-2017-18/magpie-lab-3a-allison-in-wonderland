@@ -265,6 +265,10 @@ public class Magpie5
 			"Hmmm.",
 			"Do you really think so?",
 			"You don't say."
+			"That's lovely."
+			"Nice."
+			"What about them?"
+			"That's good to know."
 	};
 	
 }
